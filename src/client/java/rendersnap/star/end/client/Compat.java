@@ -35,6 +35,15 @@ public final class Compat {
         return vanillaHooks;
     }
 
+    /**
+     * True when another mod owns the Video Settings screen (Sodium, Sodium Extra, Iris).
+     * Rendersnap must then leave that screen alone instead of replacing it with its own.
+     */
+    public static boolean hasCustomVideoUi() {
+        FabricLoader loader = FabricLoader.getInstance();
+        return loader.isModLoaded("sodium") || loader.isModLoaded("sodium-extra") || loader.isModLoaded("iris");
+    }
+
     public static String rendererStatus() {
         return vanillaHooks ? "Vanilla renderer active" : renderer + " detected: terrain hooks disabled";
     }
